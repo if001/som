@@ -1,0 +1,6 @@
+.DS_Store
+__pycache__
+fig
+!fig/.gitkeep
+weight
+!weight/.gitkeep
