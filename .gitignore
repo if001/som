@@ -1,6 +1,6 @@
 .DS_Store
 __pycache__
-fig
+fig/*
 !fig/.gitkeep
-weight
+weight/*
 !weight/.gitkeep

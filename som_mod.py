@@ -81,7 +81,7 @@ class SOM():
         return axis_set
 
     def __neighborhood_func(self, neuron1, neuron2, nb_current_loop, nb_loop):
-        c = 0.001
+        c = 0.0001
         c = 1
         # c = 0.2 色分けはこれくらいがよい
         alpha = 1 - (nb_current_loop / nb_loop)

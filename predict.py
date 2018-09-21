@@ -80,7 +80,7 @@ def word_list_to_square_string(word_list):
 
 def predict(args):
     sentence_list = get_sentence_lists(args.data_set_path)
-    som = SOM(128, 50, 50, load_flag=True)
+    som = SOM(128, 100, 100, load_flag=True)
     data_opt = DataSetOpt()
 
     fig = plt.figure()
