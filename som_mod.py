@@ -51,8 +51,10 @@ class SOM():
         win_neuron = self.__calc_win_neuron(data)
 
         for neuron in self.neuron_set:
-            neuron.w += self.__neighborhood_func(
-                win_neuron, neuron, nb_current_loop, nb_loop) * (data_np - neuron.w)
+            # neuron.w += self.__neighborhood_func(
+            #     win_neuron, neuron, nb_current_loop, nb_loop) * (data_np - neuron.w)
+            neuron.w += self.__neighborhood_func2(
+                win_neuron, neuron, nb_current_loop) * (data_np - neuron.w)
         return win_neuron
 
     def distance_win_data(self, win, data):
@@ -81,12 +83,26 @@ class SOM():
         return axis_set
 
     def __neighborhood_func(self, neuron1, neuron2, nb_current_loop, nb_loop):
-        c = 0.0001
         c = 1
+        c = 0.0001
+
         # c = 0.2 色分けはこれくらいがよい
         alpha = 1 - (nb_current_loop / nb_loop)
         dis = np.linalg.norm(np.array(neuron1.pos) - np.array(neuron2.pos))
         return c * np.exp(- np.power(dis, 2) / np.power(alpha, 2))
+
+    def __neighborhood_func2(self, neuron1, neuron2, nb_current_loop):
+        l_0 = 1.0
+        lmd = 2500
+        sigma_0 = 10
+
+        l = l_0 * np.exp(- nb_current_loop / lmd)
+
+        sigma = sigma_0 * np.exp(- nb_current_loop / lmd)
+        dis = np.linalg.norm(np.array(neuron1.pos) - np.array(neuron2.pos))
+        theta = np.exp(- np.power(dis, 2) / 2 * np.power(sigma, 2))
+
+        return l * theta
 
     def __calc_win_neuron(self, data):
         data_np = np.array(data)
@@ -116,7 +132,7 @@ def rand_color():
 
 
 def rand_feat():
-    return random.randint(-20, 20) / 10
+    return random.uniform(-0.8, 0.8)
 
 
 def main():

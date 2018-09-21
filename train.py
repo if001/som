@@ -35,7 +35,7 @@ def get_random_word_vec(data_opt, sentence_list):
 
 
 def train(args):
-    som = SOM(128, 100, 100, load_flag=args.load)
+    som = SOM(128, 150, 150, load_flag=args.load)
     nb_loop = args.epoch
     sentence_list = get_sentence_lists(args.data_set_path)
     data_opt = DataSetOpt()

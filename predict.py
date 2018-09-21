@@ -80,7 +80,7 @@ def word_list_to_square_string(word_list):
 
 def predict(args):
     sentence_list = get_sentence_lists(args.data_set_path)
-    som = SOM(128, 100, 100, load_flag=True)
+    som = SOM(128, 150, 150, load_flag=True)
     data_opt = DataSetOpt()
 
     fig = plt.figure()
@@ -90,7 +90,7 @@ def predict(args):
     flatten_word_list = list(chain.from_iterable(sentence_list))
     print("unique word num ", len(flatten_word_list))
 
-    for word in flatten_word_list[:200]:
+    for word in flatten_word_list[:300]:
         word_vec = data_opt.sentence_to_vec([word])
         win = som.prediction(word_vec)
         ax.scatter(win.pos[0], win.pos[1], s=50)
